@@ -1,0 +1,160 @@
+
+{% extends 'base.html' %}
+	{% load static %}
+	{% block body %}
+    <!-- END nav -->
+{% if blog_data.cat.name == 'Foods' %}
+    <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'images/bg_4.jpg' %});">
+       <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread">{{blog_detail.title}}</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>{{blog_data.cat.name}}<i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+      {% endif %}
+{% if blog_data.cat.name == 'Fashion' %}
+       <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'images/fashionback.jpeg' %});">
+          <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread">{{blog_detail.title}}</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>{{blog_data.cat.name}}<i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endif %}
+{% if blog_data.cat.name == 'Lifestyle' %}
+          <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'images/lifestyleback.jpeg' %});">
+             <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+            <h1 class="mb-3 bread">{{blog_detail.title}}</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>{{blog_data.cat.name}}<i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+            {% endif %}
+
+
+		<section class="ftco-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 order-lg-last ftco-animate">
+            <h2 class="mb-3">{{blog_data.title}}</h2>
+            <b class="text-blod"> {{blog_data.like_blog_set.count}}</b><a  href="{% url 'blog_like' blog_data.id %}"><button class="btn btn-primary btn-sm" class="button-sm" >like</button></a>
+            <p>{{blog_data.sdes}}</p>
+            <p>
+              <img src="{{blog_data.images.url}}" alt="" class="img-fluid">
+            </p>
+            <p>{{blog_data.long_des}}</p>
+            {% if request.user == blog_data.usr %}
+            <a href="{% url 'edit_blog' blog_data.id %}"><button class="btn py-3 px-4 btn-primary"> Edit </button></a>
+            {% endif %}
+             {% if request.user == blog_data.usr or request.user.is_staff %}
+            <a href="{% url 'delete_blog' blog_data.id %}"><button class="btn py-3 px-4 btn-primary"> Delete</button></a>
+            {% endif %}
+
+
+            
+           <!-- <div class="about-author d-flex p-4 bg-light">
+              <div class="bio mr-5">
+                <img src="{{userdata.images.url}}" alt="Image placeholder" class="img-fluid mb-4">
+              </div>
+              <div class="desc">
+                <h3>{{userdata.usr.first_name}}</h3>
+                <p>Lorem dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+              </div>
+            </div>-->
+
+
+            <div class="pt-5 mt-5">
+              <h3 class="mb-5">{{blog_data.user_comment_set.count}} Comments</h3>
+              <ul class="comment-list">
+                {% for i in comment_data %}
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img src="{{i.images.url}}" alt="Image placeholder">
+                  </div>
+                  <div class="comment-body">
+                    <h3>{{i.usr.first_name}}</h3>
+                    <div class="meta">{{i.date}}</div>
+                    <p>{{i.comment}}</p>
+
+                  </div>
+                </li>
+                {% endfor %}
+
+
+
+              </ul>
+              <!-- END comment-list -->
+              {% if request.user.is_authenticated %}
+              <div class="comment-form-wrap pt-5">
+                <h3 class="mb-5">Leave a comment</h3>
+                <form action="" class="p-5 bg-light" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label for="name">image</label>
+                    <input type="file" class="form-control" id="name" name="img">
+                  </div>
+
+                  <div class="form-group" name="comment">
+                    <label for="message">comment</label>
+                    <textarea  id="message" cols="30" rows="10" class="form-control" name="comment"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                  </div>
+
+                </form>
+              </div>
+              {%  endif %}
+            </div>
+
+          </div> <!-- .col-md-8 -->
+          <div class="col-lg-4 sidebar pr-lg-5 ftco-animate">
+
+            <div class="sidebar-box ftco-animate">
+              <ul class="categories">
+                <h3 class="heading mb-4"> Top 5 Categories</h3>
+                {% for i in allcat %}
+                <li><a href="#">{{i.name}} <span>{{i.blog_set.count}}</span></a></li>
+                {% endfor %}
+
+              </ul>
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <h3 class="heading mb-4">Recent Blog</h3>
+              {% for i in recent_blog %}
+              <div class="col-md-6 ftco-animate">
+    						<div class="blog-entry">
+		    					<a href="{% url 'blog_detail' i.id %}" class="img d-flex align-items-end" style="background-image: url({{i.images.url}});">
+		    						<div class="overlay"></div>
+			    				</a>
+			    				<div class="text pt-3">
+	    							<p class="meta d-flex"><span class="pr-3">{{i.cat.name}}</span><span class="ml-auto pl-03"> {{i.date}}</span></p>
+	    							<h3><a href="{% url 'blog_detail' i.id">{{i.title}}</a></h3>
+	    							<p class="mb-0"><a href="{% url 'blog_detail' i.id %}" class="btn-custom">Read More <span class="icon-arrow_forward ml-4"></span></a></p>
+	    						</div>
+		    				</div>
+             </div>
+              {% endfor %}
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </section> <!-- .section -->
+		
+	{% endblock %}

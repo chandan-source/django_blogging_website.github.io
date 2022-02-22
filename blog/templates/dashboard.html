@@ -1,0 +1,81 @@
+
+<!-- /breadcrumb -->
+{% extends 'base.html' %}
+	{% load static %}
+	{% block body %}
+{% if type == 'MyBlog' %}
+<section class="user-dashboard section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="list-inline dashboard-menu text-center">
+					<li class="list-inline-item"><a class="{{class1}}" href="{% url 'dashboard' 'MyBlog' %}">My Blog</a></li>
+
+					<li class="list-inline-item"><a href="{% url 'dashboard' 'profile' %}">Profile Details</a></li>
+				</ul>
+				<div class="dashboard-wrapper user-dashboard">
+					<div class="media">
+
+						<div class="media-body align-self-center">
+							<h2 class="media-heading"> name<span>  :</span> {{request.user.first_name}}</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="col-lg-9">
+
+	     <div class="row">
+                    {% for i in blogdata %}
+        			<div class="col-md-6 col-lg-12 ftco-animate">
+    						<div class="blog-entry d-lg-flex">
+    							<div class="half">
+			    					<a href="{% url 'blog_detail' i.id %}" class="img d-flex align-items-end" style="background-image: url({{ i.images.url }});">
+			    						<div class="overlay"></div>
+				    				</a>
+			    				</div>
+			    				<div class="text px-md-4 px-lg-5 half pt-3">
+	    							<p class="meta d-flex"><span class="pr-3">{{i.cat.name}}</span><span class="ml-auto pl-3">{{i.date}}</span></p>
+	    							<h3><a href="{% url 'blog_detail' i.id %}">{{i.title}}</a></h3>
+	    							<p>{{i.sdes}}</p>
+	    							<p class="mb-0"><a href="{% url 'blog_detail' i.id %}" class="btn btn-primary">Read More <span class="icon-arrow_forward ml-4"></span></a></p>
+	    						</div>
+		    				</div>
+    					</div>
+                    {% endfor %}
+	     </div>
+
+	</div>
+</section>
+{% endif %}
+{% if type == 'profile' %}
+<section class="user-dashboard section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="list-inline dashboard-menu text-center">
+          <li class="list-inline-item"><a href="{% url 'dashboard' 'MyBlog' %}">Dashboard</a></li>
+
+          <li class="list-inline-item"><a class="{{class2}}"  href="{% url 'dashboard' 'profile' %}">Profile Details</a></li>
+        </ul>
+        <div class="dashboard-wrapper dashboard-user-profile">
+          <div class="media">
+
+            <div class="media-body">
+              <ul class="user-profile-list">
+                <li><span> Name:</span>{{request.user.first_name}}</li>
+                <li><span>Username:</span>{{request.user.username}}</li>
+                <li><span>Email:</span>{{request.user.email}}</li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
