@@ -7,16 +7,16 @@
 ![2022-07-21 (4)](https://user-images.githubusercontent.com/67479578/180071397-eb7b01d2-4e50-4b56-b16a-79bbb25c2aa9.png)![2022-07-21 (5)](https://user-images.githubusercontent.com/67479578/180071430-faceb9e1-da98-4d52-81c6-a36062618148.png)
 
 
-In this i have used python,django,html,css,javascript etc..to develop this website.
-Normal User Features
-User Registration
-User Login & Logout
-User Profile
-Create,update,delete
-Comments
-User Change Password
-Password Reset
- Admin panel Features
- can delete any post
- can add category
+To develop this website i have used python,django,html,css,javascript etc..
+*Normal User Features
+1)User Registration
+2)User Login & Logout
+3)User Profile
+4)Create,update,delete
+5)Comments
+6)User Change Password
+7)Password Reset
+*Admin panel Features
+ 1)can delete any post
+ 2)can add category
  
