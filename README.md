@@ -8,15 +8,26 @@
 
 
 To develop this website i have used python,django,html,css,javascript etc..
+
 *Normal User Features
+
 1)User Registration
+
 2)User Login & Logout
+
 3)User Profile
+
 4)Create,update,delete
+
 5)Comments
+
 6)User Change Password
+
 7)Password Reset
+
 *Admin panel Features
+
  1)can delete any post
+ 
  2)can add category
  
