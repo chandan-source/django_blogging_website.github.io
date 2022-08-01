@@ -7,7 +7,7 @@
 ![2022-07-21 (4)](https://user-images.githubusercontent.com/67479578/180071397-eb7b01d2-4e50-4b56-b16a-79bbb25c2aa9.png)![2022-07-21 (5)](https://user-images.githubusercontent.com/67479578/180071430-faceb9e1-da98-4d52-81c6-a36062618148.png)
 
 
-To develop this website i have used python,django,html,css,javascript etc..
+this website is developed using python django where you can open this project by pycharm and after running the command python manage.py runserver you can view this website on your local server i.e 127.0.0.8000/.
 
 *Normal User Features
 
